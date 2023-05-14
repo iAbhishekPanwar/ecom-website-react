@@ -1,7 +1,6 @@
-import React from "react";
-
-const Reducers = () => {
-  return <div>Reducers</div>;
+export const cartReducer = (state, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
-
-export default Reducers;
