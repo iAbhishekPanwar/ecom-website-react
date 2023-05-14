@@ -44,9 +44,13 @@ const Filters = () => {
           id={`inline-4`}
         />
       </span>
-      <span>
+      <span style={{ display: "flex", alignItems: "center" }}>
         <label style={{ paddingRight: 10 }}>Rating: </label>
-        <Rating rating={rate} style={{ cursor: "pointer" }} />
+        <Rating
+          rating={rate}
+          onClick={(i) => setRate(i)}
+          style={{ cursor: "pointer" }}
+        />
       </span>
       <Button variant="light">Clear Filters</Button>
     </div>
