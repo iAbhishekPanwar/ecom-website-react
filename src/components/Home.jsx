@@ -1,56 +1,77 @@
 import React from "react";
-import { CartState } from "../context/Context";
-import SingleProduct from "./SingleProduct";
-import "./styles.css";
-import Filters from "./Filters";
+import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+import { Button, Navbar } from "react-bootstrap";
 
 const Home = () => {
-  const {
-    state: { products },
-    productState: { sort, byStock, byFastDelivery, byRating, searchQuery },
-  } = CartState();
-  console.log(products);
-
-  const transformProducts = () => {
-    let sortedProducts = products;
-
-    if (sort) {
-      sortedProducts = sortedProducts.sort((a, b) =>
-        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
-      );
-    }
-
-    if (!byStock) {
-      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
-    }
-
-    if (byFastDelivery) {
-      sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
-    }
-
-    if (byRating) {
-      sortedProducts = sortedProducts.filter(
-        (prod) => prod.ratings >= byRating
-      );
-    }
-
-    if (searchQuery) {
-      sortedProducts = sortedProducts.filter((prod) =>
-        prod.name.toLowerCase().includes(searchQuery)
-      );
-    }
-
-    return sortedProducts;
-  };
   return (
-    <div className="home">
-      <Filters />
-      <div className="productContainer">
-        {transformProducts().map((prod) => (
-          <SingleProduct prod={prod} key={prod.id} />
-        ))}
-      </div>
-    </div>
+    <>
+      <Navbar />
+
+      <Card style={{ width: "50rem" }} className="shadow-lg mx-auto mt-3">
+        <Card.Title className="text-center">EXTRAORDINARY TOURS</Card.Title>
+        <Table striped bordered>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>City</th>
+              <th>Venue</th>
+              <th>Grab Your Tickets NOW!</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JUL 16</td>
+              <td>DETROIT, MI</td>
+              <td>DTE ENERGY MUSIC THEATRE</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+            <tr>
+              <td>JUL 19</td>
+              <td>TORONTO, ON</td>
+              <td>BUDWEISER STAGE</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+            <tr>
+              <td>JUL 22</td>
+              <td>BRISTOW, VA</td>
+              <td>JIGGY LUBE LIVE</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+            <tr>
+              <td>JUL 29</td>
+              <td>PHOENIX, AZ</td>
+              <td>AK-CHIN PAVILION</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+            <tr>
+              <td>AUG 2</td>
+              <td>LAS VEGAS, NV</td>
+              <td>T-MOBILE ARENA</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+            <tr>
+              <td>AUG 7</td>
+              <td>CONCORD, CA</td>
+              <td>AK-CHIN PAVILION</td>
+              <td>
+                <Button variant="info">SNATCH TICKETS</Button>{" "}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Card>
+    </>
   );
 };
 

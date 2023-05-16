@@ -36,6 +36,7 @@ const Contact = () => {
   return (
     <div className="contact">
       <form className="formm" onSubmit={submitHandler}>
+        <h1>Contact Us</h1>
         <div>
           <label htmlFor="name">Name :</label>
           <input type="text" ref={titleRef} />

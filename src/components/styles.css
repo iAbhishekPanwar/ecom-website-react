@@ -1,46 +1,21 @@
-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 .home {
   display: flex;
 }
 
-.productContainer {
+.productcontainer {
   display: flex;
-  width: 78%;
+  width: 100%;
   padding: 20px;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.filters {
-  background-color: #343a40;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  margin: 10px;
-  height: 86vh;
-}
-
-.filters > span {
-  padding-bottom: 20px;
-}
-
-.title {
-  font-size: 30px;
-}
-
 .products {
-  width: 30%;
+  width: 25%;
   margin: 10px;
 }
 
-.cartitem {
+.cartItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +23,7 @@ body {
   margin-bottom: 20px;
 }
 
-.cartItemImg {
+.cartItemImage {
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -62,36 +37,100 @@ body {
   flex-direction: column;
 }
 
-.summary {
-  width: 30%;
+.buttonItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
-/* Media Queries */
-@media (max-width: 771px) {
-  .filters {
-    width: 40%;
-    padding: 10px;
-    margin: 5px;
-  }
+.quantity button {
+  border: none;
+  background: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0 5px;
+}
 
-  .filters > span {
-    font-size: 10px;
-  }
+.quantity span {
+  margin: 0 10px;
+  font-size: 1.2rem;
+}
 
-  .title {
-    font-size: 18px !important;
-  }
+.centered-text {
+  display: block;
+  text-align: center;
+}
 
-  .productContainer {
-    width: 58%;
-    padding: 0;
-  }
+.contact {
+  text-align: center;
+  padding: 30px;
+  border: 2px solid #000;
+  padding-left: 18rem;
+  padding-right: 18rem;
+}
 
-  .search {
-    display: none !important;
-  }
+.contact label {
+  padding: 10px;
+  color: #333; /* Dark gray color */
+}
 
-  .products {
-    width: 100%;
-  }
+.contact input {
+  border-radius: 10px;
+}
+
+.contact button {
+  background-color: #212721; /* Green color */
+  color: #fff; /* White color */
+  border-radius: 20px;
+}
+
+.formm {
+  background-color: #f2f2f2; /* Light gray color */
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.login h1 {
+  margin-bottom: 1rem;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(48, 48, 32);
+  border-radius: 20px;
+  color: blue;
+}
+
+.loginform label {
+  padding: 10px;
+}
+
+.loginform input {
+  padding: 1px;
+  border-radius: 10px;
+  size: 10px;
+}
+
+.loginform button {
+  margin: 10px;
+  border-radius: 10px;
+  background-color: black;
+  color: rgb(45, 45, 28);
 }

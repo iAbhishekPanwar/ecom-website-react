@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
-import Rating from "./Rating";
-import { CartState } from "../context/Context";
+import { Card } from "react-bootstrap";
+import { FaStar } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import { CartState } from "./context/Context";
 
 const SingleProduct = ({ prod }) => {
   const {
@@ -16,34 +17,38 @@ const SingleProduct = ({ prod }) => {
         <Card.Body>
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
-            <span>₹ {prod.price.split(".")[0]}</span>
+            <span>$ {prod.price}</span>
             {prod.fastDelivery ? (
               <div>Fast Delivery</div>
             ) : (
               <div>4 Days Delivery</div>
             )}
-            <Rating rating={prod.ratings} />
+            <div>
+              {[...Array(prod.ratings)].map((rating, index) => (
+                <FaStar key={index} color="green" size={15} />
+              ))}
+            </div>
           </Card.Subtitle>
           {cart.some((p) => p.id === prod.id) ? (
             <Button
-              onClick={() => {
+              variant="danger"
+              onClick={() =>
                 dispatch({
                   type: "REMOVE_FROM_CART",
                   payload: prod,
-                });
-              }}
-              variant="danger"
+                })
+              }
             >
-              Remove from cart
+              Remove from Cart
             </Button>
           ) : (
             <Button
-              onClick={() => {
+              onClick={() =>
                 dispatch({
                   type: "ADD_TO_CART",
                   payload: prod,
-                });
-              }}
+                })
+              }
               disabled={!prod.inStock}
             >
               {!prod.inStock ? "Out of Stock" : "Add to Cart"}
