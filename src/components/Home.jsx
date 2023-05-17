@@ -1,76 +1,53 @@
-import React from "react";
-import Table from "react-bootstrap/Table";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Button, Navbar } from "react-bootstrap";
 
 const Home = () => {
+  // Sarcastic quotes from Chandler
+  const sarcasticQuotes = [
+    "Could I BE more sarcastic?",
+    "Could I BE more skilled at web development?",
+    "Well, I’m sorry, but I don’t do requests. I’m a Bing kind of guy.",
+    "You know, I always thought Eddie was a funny guy, but then I lived with him.",
+    "Oh, I’m sorry, did my back hurt your knife?",
+    "I'm not great at advice. Can I interest you in a sarcastic comment?",
+    "I’m not so good with the advice. Can I interest you in a sarcastic comment?",
+    "I'm not Chandler, I'm Batman!",
+    "I’m Chandler, could I be wearing any more clothes?",
+    "I’m not being sarcastic. I’m just bitter and mean.",
+  ];
+
+  const [currentQuote, setCurrentQuote] = useState("");
+
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * sarcasticQuotes.length);
+    setCurrentQuote(sarcasticQuotes[randomIndex]);
+  };
+
   return (
     <>
       <Navbar />
 
-      <Card style={{ width: "50rem" }} className="shadow-lg mx-auto mt-3">
-        <Card.Title className="text-center">EXTRAORDINARY TOURS</Card.Title>
-        <Table striped bordered>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>City</th>
-              <th>Venue</th>
-              <th>Grab Your Tickets NOW!</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>JUL 16</td>
-              <td>DETROIT, MI</td>
-              <td>DTE ENERGY MUSIC THEATRE</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>JUL 19</td>
-              <td>TORONTO, ON</td>
-              <td>BUDWEISER STAGE</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>JUL 22</td>
-              <td>BRISTOW, VA</td>
-              <td>JIGGY LUBE LIVE</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>JUL 29</td>
-              <td>PHOENIX, AZ</td>
-              <td>AK-CHIN PAVILION</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>AUG 2</td>
-              <td>LAS VEGAS, NV</td>
-              <td>T-MOBILE ARENA</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>AUG 7</td>
-              <td>CONCORD, CA</td>
-              <td>AK-CHIN PAVILION</td>
-              <td>
-                <Button variant="info">SNATCH TICKETS</Button>{" "}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </Card>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "50vh" }}
+      >
+        <Card style={{ width: "50rem" }} className="shadow-lg">
+          <Card.Title className="text-center">
+            Chandler's Sarcastic Quotes
+          </Card.Title>
+          <Card.Body>
+            <blockquote className="blockquote mb-0">
+              <p>{currentQuote}</p>
+            </blockquote>
+            <div className="text-center mt-3">
+              <Button variant="info" onClick={getRandomQuote}>
+                Get Another Quote
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   );
 };

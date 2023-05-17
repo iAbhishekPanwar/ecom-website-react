@@ -1,21 +1,17 @@
 import React, { useContext, useRef, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import AuthContext from "./store/auth-context";
+import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "./store/auth-context";
 
 const Login = () => {
   const navigate = useNavigate();
-
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-
   const authCtx = useContext(AuthContext);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -23,40 +19,36 @@ const Login = () => {
 
     setIsLoading(true);
 
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA6eg-uGaZTElwEqJpxAUgK_aFOJTeDHZc",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication failed";
-
-            throw new Error(errorMessage);
-          });
+    try {
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA6eg-uGaZTElwEqJpxAUgK_aFOJTeDHZc",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .then((data) => {
+      );
+
+      if (response.ok) {
+        const data = await response.json();
         authCtx.login(data.idToken, enteredEmail);
-        alert("Login successfully");
+        alert("Login successful");
         navigate("/store");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    setIsLoading(false);
   };
 
   return (
